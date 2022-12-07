@@ -9,7 +9,7 @@ language, this will not take too long.
 .. seealso::
 
     The authoritative `reStructuredText User
-    Documentation <http://docutils.sourceforge.net/rst.html>`_.
+    Documentation <https://docutils.sourceforge.io/rst.html>`_.
 
 
 Paragraphs
@@ -20,6 +20,7 @@ chunks of text separated by one or more blank lines.  As in Python, indentation
 is significant in reST, so all lines of the same paragraph must be left-aligned
 to the same level of indentation.
 
+.. _inline-markup:
 
 Inline markup
 -------------
@@ -28,7 +29,7 @@ The standard reST inline markup is quite simple: use
 
 * one asterisk: ``*text*`` for emphasis (italics),
 * two asterisks: ``**text**`` for strong emphasis (boldface), and
-* backquotes: ````text```` for code samples.
+* backquotes: ````text```` for code samples, variables, and literals.
 
 If asterisks or backquotes appear in running text and could be confused with
 inline markup delimiters, they have to be escaped with a backslash.
@@ -53,7 +54,7 @@ Lists and Quotes
 
 List markup is natural: just place an asterisk at the start of a paragraph and
 indent properly.  The same goes for numbered lists; they can also be
-autonumbered using a ``#`` sign::
+automatically numbered using a ``#`` sign::
 
    * This is a bulleted list.
    * It has two items, the second
@@ -118,19 +119,20 @@ The handling of the ``::`` marker is smart:
 That way, the second sentence in the above example's first paragraph would be
 rendered as "The next paragraph is a code sample:".
 
+.. _hyperlinks:
 
 Hyperlinks
 ----------
 
 External links
-^^^^^^^^^^^^^^
+''''''''''''''
 
 Use ```Link text <http://target>`_`` for inline web links.  If the link text
 should be the web address, you don't need special markup at all, the parser
 finds links and mail addresses in ordinary text.
 
 Internal links
-^^^^^^^^^^^^^^
+''''''''''''''
 
 Internal linking is done via a special reST role, see the section on specific
 markup, :ref:`doc-ref-role`.
@@ -148,7 +150,7 @@ section title with a punctuation character, at least as long as the text::
 
 Normally, there are no heading levels assigned to certain characters as the
 structure is determined from the succession of headings.  However, for the
-Python documentation, we use this convention:
+Python documentation, here is a suggested convention:
 
 * ``#`` with overline, for parts
 * ``*`` with overline, for chapters
@@ -171,6 +173,7 @@ indentation.  (There needs to be a blank line between explicit markup and normal
 paragraphs.  This may all sound a bit complicated, but it is intuitive enough
 when you write it.)
 
+.. _directives:
 
 Directives
 ----------
@@ -179,8 +182,11 @@ A directive is a generic block of explicit markup.  Besides roles, it is one of
 the extension mechanisms of reST, and Sphinx makes heavy use of it.
 
 Basically, a directive consists of a name, arguments, options and content. (Keep
-this terminology in mind, it is used in the next chapter describing custom
-directives.)  Looking at this example, ::
+this terminology in mind, it is used in `:ref:`the next section
+<Additional Markup Constructs>` describing custom
+directives.)  Looking at this example,
+
+::
 
    .. function:: foo(x)
                  foo(y, z)
@@ -212,12 +218,15 @@ body at the bottom of the document after a "Footnotes" rubric heading, like so::
 
 You can also explicitly number the footnotes for better context.
 
+.. _comments:
 
 Comments
 --------
 
-Every explicit markup block which isn't a valid markup construct (like the
-footnotes above) is regarded as a comment.
+Every explicit markup block (starting with :literal:`.. \ `) which isn't a
+:ref:`valid markup construct <directives>` is regarded as a comment::
+
+   .. This is a comment
 
 
 Source encoding
