@@ -9,7 +9,7 @@ language, this will not take too long.
 .. seealso::
 
     The authoritative `reStructuredText User
-    Documentation <https://docutils.sourceforge.io/rst.html>`_.
+    Documentation <http://docutils.sourceforge.net/rst.html>`_.
 
 
 Paragraphs
@@ -20,7 +20,6 @@ chunks of text separated by one or more blank lines.  As in Python, indentation
 is significant in reST, so all lines of the same paragraph must be left-aligned
 to the same level of indentation.
 
-.. _inline-markup:
 
 Inline markup
 -------------
@@ -29,7 +28,7 @@ The standard reST inline markup is quite simple: use
 
 * one asterisk: ``*text*`` for emphasis (italics),
 * two asterisks: ``**text**`` for strong emphasis (boldface), and
-* backquotes: ````text```` for code samples, variables, and literals.
+* backquotes: ````text```` for code samples.
 
 If asterisks or backquotes appear in running text and could be confused with
 inline markup delimiters, they have to be escaped with a backslash.
@@ -54,7 +53,7 @@ Lists and Quotes
 
 List markup is natural: just place an asterisk at the start of a paragraph and
 indent properly.  The same goes for numbered lists; they can also be
-automatically numbered using a ``#`` sign::
+autonumbered using a ``#`` sign::
 
    * This is a bulleted list.
    * It has two items, the second
@@ -65,6 +64,12 @@ automatically numbered using a ``#`` sign::
 
    #. This is a numbered list.
    #. It has two items too.
+
+Note that Sphinx disables the use of enumerated lists introduced by alphabetic
+or roman numerals, such as ::
+
+   A. First item
+   B. Second item
 
 
 Nested lists are possible, but be aware that they must be separated from the
@@ -97,7 +102,7 @@ Source Code
 -----------
 
 Literal code blocks are introduced by ending a paragraph with the special marker
-``::``.  The literal block must be indented::
+``::``.  The literal block must be indented, to be able to include blank lines::
 
    This is a normal text paragraph. The next paragraph is a code sample::
 
@@ -119,20 +124,19 @@ The handling of the ``::`` marker is smart:
 That way, the second sentence in the above example's first paragraph would be
 rendered as "The next paragraph is a code sample:".
 
-.. _hyperlinks:
 
 Hyperlinks
 ----------
 
 External links
-''''''''''''''
+^^^^^^^^^^^^^^
 
 Use ```Link text <http://target>`_`` for inline web links.  If the link text
 should be the web address, you don't need special markup at all, the parser
 finds links and mail addresses in ordinary text.
 
 Internal links
-''''''''''''''
+^^^^^^^^^^^^^^
 
 Internal linking is done via a special reST role, see the section on specific
 markup, :ref:`doc-ref-role`.
@@ -150,7 +154,7 @@ section title with a punctuation character, at least as long as the text::
 
 Normally, there are no heading levels assigned to certain characters as the
 structure is determined from the succession of headings.  However, for the
-Python documentation, here is a suggested convention:
+Python documentation, this convention is used which you may follow:
 
 * ``#`` with overline, for parts
 * ``*`` with overline, for chapters
@@ -173,7 +177,6 @@ indentation.  (There needs to be a blank line between explicit markup and normal
 paragraphs.  This may all sound a bit complicated, but it is intuitive enough
 when you write it.)
 
-.. _directives:
 
 Directives
 ----------
@@ -182,11 +185,8 @@ A directive is a generic block of explicit markup.  Besides roles, it is one of
 the extension mechanisms of reST, and Sphinx makes heavy use of it.
 
 Basically, a directive consists of a name, arguments, options and content. (Keep
-this terminology in mind, it is used in `:ref:`the next section
-<Additional Markup Constructs>` describing custom
-directives.)  Looking at this example,
-
-::
+this terminology in mind, it is used in the next chapter describing custom
+directives.)  Looking at this example, ::
 
    .. function:: foo(x)
                  foo(y, z)
@@ -218,15 +218,12 @@ body at the bottom of the document after a "Footnotes" rubric heading, like so::
 
 You can also explicitly number the footnotes for better context.
 
-.. _comments:
 
 Comments
 --------
 
-Every explicit markup block (starting with :literal:`.. \ `) which isn't a
-:ref:`valid markup construct <directives>` is regarded as a comment::
-
-   .. This is a comment
+Every explicit markup block which isn't a valid markup construct (like the
+footnotes above) is regarded as a comment.
 
 
 Source encoding
@@ -236,7 +233,7 @@ Since the easiest way to include special characters like em dashes or copyright
 signs in reST is to directly write them as Unicode characters, one has to
 specify an encoding:
 
-All Python documentation source files must be in UTF-8 encoding, and the HTML
+All documentation source files must be in UTF-8 encoding, and the HTML
 documents written from them will be in that encoding as well.
 
 
